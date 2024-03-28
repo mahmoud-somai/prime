@@ -1,12 +1,36 @@
-<h1 style="color: green;
-		text-align:center;">
-	Organization Chart Of Nour
-</h1>
-<h3>
-	Hello World
-</h3>
+<h1 style="color: rgb(192, 56, 160); text-align:center;">Organization Chart </h1>
 
-<p-organizationChart [value]="data1"
-					selectionMode="single"
-					[preserveSpace]="false">
-</p-organizationChart>
+<div class="card custom-card flex justify-content-center overflow-x-auto">
+  <p-organizationChart [value]="data" selectionMode="multiple" [(selection)]="selectedNodes">
+    <ng-template let-node pTemplate="person">
+      <div class="p-2 text-center custom-div" (click)="showOverlay(node)">
+        <div class="flex">
+          <img [src]="node.data.image" class="mb-3 custom-image" />
+          <div class="data-container">
+            <div class="font-bold">{{ node.data.name }}</div>
+            <div>{{ node.data.title }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-organizationChart>
+
+  <div *ngIf="selectedNode" class="overlay">
+    <form class="form overlay-card">
+      <label>
+        <span>Name</span>
+        <input required="" placeholder="{{  selectedNode.data.name }}" type="email" class="input" [disabled]="true">
+
+      </label>
+
+      <label>
+        <span>Title</span>
+        <input required="" type="tel" placeholder="{{  selectedNode.data.title }}" class="input" [disabled]="true">
+
+      </label>
+
+      <button class="btn_overlay" (click)="hideOverlay()">Close</button>
+    </form>
+  </div>
+
+</div>

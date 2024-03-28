@@ -6,46 +6,160 @@ import { MessageService } from 'primeng/api';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
-	providers: [MessageService],
+  styleUrls: ['./app.component.css'],
+	// providers: [MessageService],
 })
 export class AppComponent {
-	data1: TreeNode[] | undefined;
-	selectedNode: TreeNode | undefined;
 
-	constructor(private messageService: MessageService) { }
+  selectedNodes!: TreeNode[];
+  selectedNode: TreeNode | null = null;
 
-	ngOnInit() {
-		this.data1 = [
-			{
-				label: 'Data Structures and Algorithms',
-				expanded: true,
-				children: [
-					{
-						label: 'Data Structures',
-						expanded: true,
-						children: [
-							{
-								label: 'Queue',
-							},
-							{
-								label: 'Red-Black Tree',
-							},
-						],
-					},
-					{
-						label: 'Algorithms',
-						expanded: true,
-						children: [
-							{
-								label: 'Hashing',
-							},
-							{
-								label: 'Divide and Conquer',
-							},
-						],
-					},
-				],
-			},
-		];
-	}
+
+  data: TreeNode[] = [
+    {
+      expanded: true,
+      type: 'person',
+      styleClass: 'myClass',
+      data: {
+        image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+        name: 'Amy Elsner',
+        title: 'CEO'
+      },
+      children: [
+        {
+          expanded: true,
+          type: 'person',
+          styleClass: 'myClass',
+          data: {
+            image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+            name: 'Anna Fali',
+            title: 'CMO'
+          },
+          children: [
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+          ]
+        },
+        {
+          expanded: false,
+          type: 'person',
+          styleClass: 'myClass',
+          data: {
+            image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+            name: 'Stephen Shaw',
+            title: 'CTO'
+          },
+          children: [
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+          ]
+        },
+        {
+          expanded: false,
+          type: 'person',
+          styleClass: 'myClass',
+          data: {
+            image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+            name: 'Stephen Shaw',
+            title: 'CTO'
+          },
+          children: [
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+            {
+              expanded: false,
+              type: 'person',
+              styleClass: 'myClass',
+              data: {
+                image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+                name: 'Stephen Shaw',
+                title: 'CTO'
+              }
+            },
+          ]
+
+        },
+
+      ]
+    }
+  ];
+
+  constructor() {
+    this.truncateNames(this.data);
+  }
+
+  truncateNames(nodes: TreeNode[]): void {
+    const maxLength = 10;
+    nodes.forEach(node => {
+      if (node.data && node.data.name && node.data.name.length > maxLength) {
+        node.data.name = node.data.name.substring(0, maxLength) + '...';
+      }
+      if (node.children) {
+        this.truncateNames(node.children);
+      }
+    });
+  }
+  showOverlay(node: TreeNode): void {
+    this.selectedNode = node;
+  }
+
+  hideOverlay(): void {
+    this.selectedNode = null;
+  }
+
+
 }

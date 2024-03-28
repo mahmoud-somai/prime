@@ -1,0 +1,107 @@
+.custom-div {
+  width: 130px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.custom-div .font-bold {
+  font-size: 14px;
+}
+
+.custom-div .data-container {
+  font-size: 14px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.custom-image {
+  width: 50px; /* Adjust image width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 6px; /* Add margin to separate image from data */
+}
+
+.data-container {
+  flex-grow: 1;
+}
+
+:host ::ng-deep .myClass {
+  border-color: aqua;
+  border-radius: 20px 0 20px 0;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(66, 30, 208);
+  z-index: 2;
+}
+
+.overlay-card {
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.overlay-card .flex {
+  display: flex;
+  gap: 6px;
+}
+
+.overlay-card label {
+  position: relative;
+}
+
+.overlay-card label .input,
+.overlay-card label .input01 {
+  width: 100%;
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+}
+
+.overlay-card label .input + span,
+.overlay-card label .input01 + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: black;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.overlay-card label .input:placeholder-shown + span,
+.overlay-card label .input01:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+
+
+
+.btn_overlay{
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
